@@ -45,6 +45,7 @@ public class FireProjectile extends GameObject {
      * Draw the fire projectile
      * @param app The PApplet drawing surface
      */
+    @Override
     public void draw(PApplet app) {
         // Draw big red fireball
         app.fill(255, 0, 0);  // Red

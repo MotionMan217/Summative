@@ -46,6 +46,7 @@ public class MonkTang extends GameObject {
      * Draw the monk character
      * @param app The PApplet drawing surface
      */
+    @Override
     public void draw(PApplet app) {
         if (image != null) {
             app.image(image, x, y, width, height);

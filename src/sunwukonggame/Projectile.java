@@ -49,6 +49,7 @@ public class Projectile extends GameObject {
         y += dy;
     }
     
+    @Override
     public void draw(PApplet app) {
         if (image != null) {
             app.image(image, x, y, width, height);

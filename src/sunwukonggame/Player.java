@@ -50,6 +50,7 @@ public class Player extends GameObject {
      * Draw player with flashing effect when invulnerable
      * param app The PApplet drawing surface
      */
+    @Override
     public void draw(PApplet app) {
         if (isInvulnerable()) {
             // Flash effect during invulnerability

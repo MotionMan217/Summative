@@ -91,6 +91,7 @@ public class BullDemonKing extends GameObject {
      * Draw the boss with fire breath effect when active
      * @param app The PApplet drawing surface
      */
+    @Override
     public void draw(PApplet app) {
         if (isFireBreathing) {
             app.fill(255, 0, 0, 100);

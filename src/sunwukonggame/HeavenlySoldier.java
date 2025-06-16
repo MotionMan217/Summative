@@ -44,6 +44,7 @@ public class HeavenlySoldier extends GameObject {
      * Draw the soldier character.
      * @param app The PApplet drawing surface
      */
+    @Override
     public void draw(PApplet app) {
         if (image != null) {
             app.image(image, x, y, width, height);
