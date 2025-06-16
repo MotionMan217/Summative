@@ -18,10 +18,19 @@ import java.util.Timer;
 //Used: https://www.geeksforgeeks.org/java/java-util-timertask-class-java/
 import java.util.TimerTask;
 
+//Fire attach shape
+// Make cone shape in front of boss
 public class BullDemonKing extends GameObject {
     private int health = 300;           
     private int speed = 3;               
     private boolean isFireBreathing = false;
+    private boolean[][] firePattern = {
+        {false, true,  true,  true,  false},
+        {true,  true,  true,  true,  true},
+        {true,  true,  true,  true,  true},
+        {false, true,  true,  true,  false},
+        {false, false, true,  false, false}
+    };
     
     /**
      * Creates Bull Demon King boss.
@@ -94,8 +103,22 @@ public class BullDemonKing extends GameObject {
     @Override
     public void draw(PApplet app) {
         if (isFireBreathing) {
-            app.fill(255, 0, 0, 100);
-            app.rect(x, y, width, height);
+            
+            //Draw fire pattern from 2D array
+            int cellSize = 20;
+            app.fill(255, 100, 0, 150);
+            
+            //Loop thorugh each cell in pattern
+            for (int row = 0; row < firePattern.length; row++) {
+                for (int col = 0; col < firePattern[row].length; col++) {
+                    if (firePattern[row][col]) {
+                        //Calculate position based on the boss
+                        int fireX = x + (col * cellSize) - (firePattern[0].length * cellSize / 2);
+                        int fireY = y + (row * cellSize) - 10;
+                        app.rect(fireX, fireY, cellSize, cellSize);
+                    }
+                }
+            }
         }
         
         if (image != null) {

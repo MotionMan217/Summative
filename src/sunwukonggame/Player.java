@@ -3,9 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 /**
- * Character with movement and abilities.
+ * Player class with movement and abilities.
+ * Now includes an overloaded constructor for default image usage.
  * 
- * @version 2.0 (June 15, 2025)
+ * @version 2.1 (June 2025)
  * @author Thierry
  */
 package sunwukonggame;
@@ -14,11 +15,11 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Player extends GameObject {
-    private boolean isInvulnerable = false; 
-    private long invulnerableEndTime = 0;    
+    private boolean isInvulnerable = false;
+    private long invulnerableEndTime = 0;
     
     /**
-     * Creates new player character
+     * Creates new player character with custom image
      * @param app PApplet reference
      * @param x Initial x position
      * @param y Initial y position
@@ -30,6 +31,16 @@ public class Player extends GameObject {
     }
     
     /**
+     * Creates new player character with default image
+     * @param app PApplet reference
+     * @param x Initial x position
+     * @param y Initial y position
+     */
+    public Player(PApplet app, int x, int y) {
+        this(app, x, y, "default_player.png");
+    }
+    
+    /**
      * Check if player has shield on
      * @return True if invulnerable
      */
@@ -38,18 +49,14 @@ public class Player extends GameObject {
     }
     
     /**
-     * Make player invulnerable for specified duration.
-     * @param durationMillis Duration in ms
+     * Make player invulnerable for specified duration
+     * @param durationMillis Duration in milliseconds
      */
     public void setInvulnerable(long durationMillis) {
         this.isInvulnerable = true;
         this.invulnerableEndTime = System.currentTimeMillis() + durationMillis;
     }
     
-    /**
-     * Draw player with flashing effect when invulnerable
-     * param app The PApplet drawing surface
-     */
     @Override
     public void draw(PApplet app) {
         if (isInvulnerable()) {
@@ -64,14 +71,14 @@ public class Player extends GameObject {
     }
     
     /**
-     * Draw the player character.
+     * Draw the player character
      * @param app The PApplet drawing surface
      */
     private void drawCharacter(PApplet app) {
         if (image != null) {
             app.image(image, x, y, width, height);
         } else {
-            app.fill(255, 215, 0); // Gold fallback
+            app.fill(255, 215, 0);
             app.rect(x, y, width, height);
         }
     }
